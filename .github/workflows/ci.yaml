@@ -54,3 +54,4 @@ jobs:
           echo "Name: ${{ runner.name }}"
           echo "Temp: ${{ runner.temp }}"
           echo "Tool_Cache: ${{ runner.tool_cache }}"
+          echo "Workflow: ${{ github.workflow }}"
