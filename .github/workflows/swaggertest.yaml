@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest # or windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -15,16 +15,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: "8.0.x" # or your .NET version
+          dotnet-version: "6.0.x"
 
       - name: Restore dependencies
-        run: dotnet restore
-        working-directory: ./SwaggerProj/Swagger.Tests/Swagger.Tests.sln
+        run: dotnet restore Swagger.Tests.sln # Specify solution file here
+        working-directory: ./SwaggerProj/Swagger.Tests # Directory containing the .sln file
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
-        working-directory: ./SwaggerProj/Swagger.Tests/Swagger.Tests.sln
+        run: dotnet build Swagger.Tests.sln --configuration Release --no-restore
+        working-directory: ./SwaggerProj/Swagger.Tests
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal
-        working-directory: ./SwaggerProj/Swagger.Tests/Swagger.Tests.sln
+        run: dotnet test Swagger.Tests.sln --configuration Release --no-build --verbosity normal
+        working-directory: ./SwaggerProj/Swagger.Tests
