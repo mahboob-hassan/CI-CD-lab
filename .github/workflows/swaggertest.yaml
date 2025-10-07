@@ -19,12 +19,12 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ./SwaggerProj
+        working-directory: ./SwaggerProj/Swagger.Tests/Swagger.Tests.sln
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
-        working-directory: ./SwaggerProj
+        working-directory: ./SwaggerProj/Swagger.Tests/Swagger.Tests.sln
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build --verbosity normal
-        working-directory: ./SwaggerProj
+        working-directory: ./SwaggerProj/Swagger.Tests/Swagger.Tests.sln
