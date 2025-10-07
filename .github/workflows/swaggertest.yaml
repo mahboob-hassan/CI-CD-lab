@@ -1,0 +1,27 @@
+name: Run Swagger Tests
+
+on:
+  push:
+    branches:
+      - feature/workflow-cicd-file
+
+jobs:
+  test:
+    runs-on: windows-latest # or ubuntu-latest if cross-platform
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "6.0.x" # or your .NET version
+
+      - name: Restore dependencies
+        run: dotnet restore Swagger.Tests.sln
+
+      - name: Build
+        run: dotnet build Swagger.Tests.sln --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test Swagger.Tests.sln --configuration Release --no-build --verbosity normal
